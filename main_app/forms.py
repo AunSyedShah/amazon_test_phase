@@ -9,6 +9,10 @@ class SignInForm(forms.ModelForm):
     class Meta:
         model = User
         fields = ['username', 'password']
+        labels = {
+            'username': 'Username',
+            'password': 'Password',
+        }
 
 
 class ImageModelForm(forms.ModelForm):

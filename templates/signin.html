@@ -1,7 +1,28 @@
 {% extends 'base.html' %}
+{% load crispy_forms_tags %}
 {% block title %}
     Login
 {% endblock %}
 {% block content %}
-    <h1>Login</h1>
+    {% for message in messages %}
+        {% if message.tags == 'error' %}
+            <!-- bootstrap alert -->
+            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                <strong>{{ message }}</strong>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        {% endif %}
+        {% if message.tags == 'success' %}
+            <!-- bootstrap alert -->
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                <strong>{{ message }}</strong>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        {% endif %}
+    {% endfor %}
+    <h3>Login</h3>
+    <form method="post">
+        {% csrf_token %}
+        {{ sign_in_form|crispy }}
+        <button type="submit" class="btn btn-primary">Login</button>
 {% endblock %}

@@ -1,5 +1,5 @@
 # How to run this project
-```python
+```bash
 python -m pip install virtualenv
 python -m virtualenv venv
 venv\Scripts\activate
