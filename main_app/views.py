@@ -1,7 +1,8 @@
 from django.shortcuts import render, redirect
-from .forms import SignInForm, ImageModelForm, VideoModelForm, EmailModelForm
+from .forms import ImageModelForm, VideoModelForm, EmailModelForm, UserCreationModelForm
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.forms import AuthenticationForm
 
 
 # Create your views here.
@@ -44,6 +45,9 @@ def home(request):
 
 
 def contact_us(request):
+    if not request.user.is_authenticated:
+        messages.error(request, 'Please sign in to continue')
+        return redirect('signin')
     context = {}
     if request.method == 'POST':
         form = EmailModelForm(request.POST)
@@ -60,21 +64,38 @@ def contact_us(request):
 def signin(request):
     context = {}
     if request.method == 'POST':
-        sign_in_form = SignInForm(request.POST)
+        sign_in_form = AuthenticationForm(request, data=request.POST)
         if sign_in_form.is_valid():
             username = sign_in_form.cleaned_data['username']
             password = sign_in_form.cleaned_data['password']
             user = authenticate(username=username, password=password)
-            if user is not None:
-                login(request, user)
-                return redirect('index')
-            else:
-                messages.error(request, 'Invalid username or password')
-                return redirect(request.path)
-    context['sign_in_form'] = SignInForm()
+            login(request, user)
+            messages.success(request, 'Logged in successfully')
+            return redirect('index')
+        else:
+            for error in sign_in_form.errors:
+                messages.error(request, sign_in_form.errors[error])
+            return redirect(request.path)
+    context['sign_in_form'] = AuthenticationForm()
     return render(request, 'signin.html', context)
 
 
 def user_logout(request):
     logout(request)
     return redirect('signin')
+
+
+def register(request):
+    context = {}
+    if request.method == 'POST':
+        registration_form = UserCreationModelForm(request.POST)
+        if registration_form.is_valid():
+            registration_form.save()
+            messages.success(request, 'User registered successfully')
+            return redirect('signin')
+        else:
+            for error in registration_form.errors:
+                messages.error(request, registration_form.errors[error])
+            return redirect(request.path)
+    context['registration_form'] = UserCreationModelForm()
+    return render(request, 'register.html', context)

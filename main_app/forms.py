@@ -1,17 +1,27 @@
 from django import forms
 from django.contrib.auth.models import User
 from .models import Image, Video, Email
+from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 
 
-class SignInForm(forms.ModelForm):
-    password = forms.CharField(widget=forms.PasswordInput)
-
+class AuthenticationModelForm(AuthenticationForm):
     class Meta:
         model = User
-        fields = ['username', 'password']
+        fields = ('username', 'password')
         labels = {
             'username': 'Username',
             'password': 'Password',
+        }
+
+
+class UserCreationModelForm(UserCreationForm):
+    class Meta:
+        model = User
+        fields = ('username', 'password1', 'password2')
+        labels = {
+            'username': 'Username',
+            'password1': 'Password',
+            'password2': 'Confirm Password',
         }
 
 
