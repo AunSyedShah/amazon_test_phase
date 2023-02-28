@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% load crispy_forms_tags %}
 {% block title %}
-    Login
+    Register
 {% endblock %}
 {% block content %}
     {% for message in messages %}
@@ -24,6 +24,6 @@
     <form method="post">
         {% csrf_token %}
         {{ registration_form|crispy }}
-        <button type="submit" class="btn btn-primary">Login</button>
+        <button type="submit" class="btn btn-primary">Create Account</button>
     </form>
 {% endblock %}
