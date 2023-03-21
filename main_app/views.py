@@ -3,6 +3,10 @@ from .forms import ImageModelForm, VideoModelForm, EmailModelForm, UserCreationM
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import AuthenticationForm
+from rest_framework_simplejwt.authentication import JWTAuthentication
+from rest_framework.permissions import IsAuthenticated
+from django.http import JsonResponse
+from .models import Image
 
 
 # Create your views here.
@@ -35,6 +39,7 @@ def home(request):
                         return redirect(request.path)
             else:
                 messages.error(request, 'Please select a file')
+                return redirect(request.path)
         if request.method == 'GET':
             context["image_form"] = ImageModelForm()
             context["video_form"] = VideoModelForm()
@@ -82,6 +87,7 @@ def signin(request):
 
 def user_logout(request):
     logout(request)
+    messages.success(request, 'Logged out successfully')
     return redirect('signin')
 
 
@@ -99,3 +105,18 @@ def register(request):
             return redirect(request.path)
     context['registration_form'] = UserCreationModelForm()
     return render(request, 'register.html', context)
+
+
+def authentication_test(request):
+    print(request.user.is_authenticated)
+
+
+def uploaded_images(request):
+    if request.user.is_authenticated:
+        context = {}
+        if request.method == "GET":
+            context["images"] = Image.objects.filter(uploaded_by=request.user)
+            return render(request, 'uploaded_images.html', context)
+    else:
+        messages.error(request, 'Please sign in to continue')
+        return redirect('signin')

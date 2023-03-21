@@ -11,21 +11,37 @@
 </head>
 <body>
 <div class="container my-1">
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="{% url 'index' %}">Prototype Phase</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    {% if request.user.is_authenticated %}
+                        <li class="nav-item">
+                            <!-- if current page is index, then add active class -->
+                            <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+                        </li>
+                    {% else %}
+                        <li class="nav-item">
+                            <!-- if current page is index, then add active class -->
+                            <a class="nav-link" href="{% url 'signin' %}">SignIn</a>
+                        </li>
+                        <li class="nav-item">
+                            <!-- if current page is index, then add active class -->
+                            <a class="nav-link" href="{% url 'register' %}">Register</a>
+                        </li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+    </nav>
     {% block content %}
 
     {% endblock %}
-    <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
-        {% if request.user.is_authenticated %}
-            <p class="col-md-4 mb-0 text-muted"><a href="{% url 'index' %}" class="btn btn-warning">Home</a></p>
-            <p class="col-md-4 mb-0 text-muted"><a href="{% url 'contact_us' %}" class="btn btn-warning">Contact US</a>
-            </p>
-            <p class="col-md-4 mb-0 text-muted"><a href="{% url 'logout' %}" class="btn btn-danger">Logout</a></p>
-        {% else %}
-            <p class="col-md-4 mb-0 text-muted"><a href="{% url 'register' %}" class="btn btn-info">Create
-                Account</a></p>
-            <p class="col-md-4 mb-0 text-muted"><a href="{% url 'signin' %}" class="btn btn-info">Existing User?</a></p>
-        {% endif %}
-    </footer>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"

@@ -7,7 +7,7 @@ from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 class AuthenticationModelForm(AuthenticationForm):
     class Meta:
         model = User
-        fields = ('username', 'password')
+        fields = "__all__"
         labels = {
             'username': 'Username',
             'password': 'Password',
