@@ -6,6 +6,7 @@ media/
 .idea/
 # C extensions
 *.so
+static/
 
 # Distribution / packaging
 .Python
