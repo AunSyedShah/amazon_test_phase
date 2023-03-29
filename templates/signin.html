@@ -1,6 +1,5 @@
 {% extends 'base.html' %}
 {% load crispy_forms_tags %}
-{% load static %}
 {% block title %}
     Login
 {% endblock %}
@@ -27,5 +26,4 @@
         {{ sign_in_form|crispy }}
         <button type="submit" class="btn btn-primary">Login</button>
     </form>
-    <script src="{% static 'main_app/js/index.js' %}"></script>
 {% endblock %}
