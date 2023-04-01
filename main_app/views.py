@@ -3,9 +3,6 @@ from .forms import ImageModelForm, VideoModelForm, EmailModelForm, UserCreationM
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import AuthenticationForm
-from rest_framework_simplejwt.authentication import JWTAuthentication
-from rest_framework.permissions import IsAuthenticated
-from django.http import JsonResponse
 from .models import Image
 
 

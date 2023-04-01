@@ -7,6 +7,9 @@ media/
 # C extensions
 *.so
 static/
+*/migrations/
+migrations/
+amazon_seller_test_phase.zip
 
 # Distribution / packaging
 .Python
