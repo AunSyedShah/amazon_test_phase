@@ -8,11 +8,13 @@ from django.contrib.auth.models import User
 class Image(models.Model):
     image = models.ImageField(upload_to='images/', blank=True, null=True, default=None)
     uploaded_by = models.ForeignKey(User, on_delete=models.CASCADE, default=None, blank=True, null=True)
+    uploaded_date = models.DateTimeField(auto_now=True, blank=True, null=True)
 
 
 class Video(models.Model):
     video = models.FileField(upload_to='videos/', blank=True, null=True, default=None)
     uploaded_by = models.ForeignKey(User, on_delete=models.CASCADE, default=None, blank=True, null=True)
+    uploaded_date = models.DateTimeField(auto_now_add=True, blank=True, null=True)
 
 
 class Email(models.Model):
@@ -22,3 +24,4 @@ class Email(models.Model):
     message = models.TextField(max_length=1000)
     sent_by = models.ForeignKey(User, on_delete=models.CASCADE, default=None, blank=True, null=True,
                                 related_name='sent_by')
+    sent_date = models.DateTimeField(auto_now_add=True, blank=True, null=True)

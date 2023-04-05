@@ -3,7 +3,7 @@ from .forms import ImageModelForm, VideoModelForm, EmailModelForm, UserCreationM
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import AuthenticationForm
-from .models import Image
+from .models import Image, Video
 
 
 # Create your views here.
@@ -114,6 +114,17 @@ def uploaded_images(request):
         if request.method == "GET":
             context["images"] = Image.objects.filter(uploaded_by=request.user)
             return render(request, 'uploaded_images.html', context)
+    else:
+        messages.error(request, 'Please sign in to continue')
+        return redirect('signin')
+
+
+def uploaded_videos(request):
+    if request.user.is_authenticated:
+        context = {}
+        if request.method == "GET":
+            context["videos"] = Video.objects.filter(uploaded_by=request.user)
+            return render(request, 'uploaded_videos.html', context)
     else:
         messages.error(request, 'Please sign in to continue')
         return redirect('signin')

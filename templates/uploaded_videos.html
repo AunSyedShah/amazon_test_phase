@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% load crispy_forms_tags %}
 {% block title %}
-    Login
+    Uploaded Images
 {% endblock %}
 {% block content %}
     {% for message in messages %}
@@ -20,10 +20,20 @@
             </div>
         {% endif %}
     {% endfor %}
-    <h3>Login</h3>
-    <form method="post">
-        {% csrf_token %}
-        {{ sign_in_form|crispy }}
-        <button type="submit" class="btn btn-warning">Login</button>
-    </form>
+    <h5>Uploaded Videos</h5>
+    <!-- display image in row and column -->
+    <div class="row">
+        {% for video in videos %}
+            <div class="col">
+                <div class="card" style="width: 18rem;">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ video.video.name }}</h5>
+                        <a href="{{ video.video.url }}" class="btn btn-primary">Watch Now</a>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+
+    </div>
+
 {% endblock %}
