@@ -4,30 +4,29 @@
     Home
 {% endblock %}
 {% block content %}
-    {% for message in messages %}
-        {% if message.tags == 'error' %}
-            <!-- bootstrap alert -->
-            <div class="alert alert-warning alert-dismissible fade show" role="alert">
-                <strong>{{ message }}</strong>
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>
-        {% endif %}
-        {% if message.tags == 'success' %}
-            <!-- bootstrap alert -->
-            <div class="alert alert-success alert-dismissible fade show" role="alert">
-                <strong>{{ message }}</strong>
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>
-        {% endif %}
-    {% endfor %}
+        {% for message in messages %}
+            {% if message.tags == 'error' %}
+                <!-- bootstrap alert -->
+                <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                    <strong>{{ message }}</strong>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            {% endif %}
+            {% if message.tags == 'success' %}
+                <!-- bootstrap alert -->
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    <strong>{{ message }}</strong>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            {% endif %}
+        {% endfor %}
 
-    <form method="post" enctype="multipart/form-data">
-        {% csrf_token %}
-        {{ image_form|crispy }}
-        <div class="vr"></div>
-        {{ video_form | crispy }}
-        <input type="submit" value="Upload Image" name="image_btn" class="btn btn-primary">
-        <input type="submit" value="Upload Video" name="video_btn" class="btn btn-primary">
-    </form>
-
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ image_form|crispy }}
+            <div class="vr"></div>
+            {{ video_form | crispy }}
+            <input type="submit" value="Upload Image" name="image_btn" class="btn btn-primary">
+            <input type="submit" value="Upload Video" name="video_btn" class="btn btn-primary">
+        </form>
 {% endblock %}
