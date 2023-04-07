@@ -14,7 +14,7 @@ python manage.py runserver
 ##### Option 2 - Without Virtual Environment
 ```
 pip install -r requirements.txt
-python manage.py makemigrations
+python manage.py makemigrations main_app
 python manage.py migrate
 python manage.py runserver
 ```
