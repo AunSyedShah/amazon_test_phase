@@ -7,7 +7,7 @@ from .models import Image, Video
 
 
 # Create your views here.
-def home(request):
+def dashboard(request):
     if request.user.is_authenticated:
         context = {}
         if request.method == "POST":
@@ -124,6 +124,7 @@ def uploaded_videos(request):
         context = {}
         if request.method == "GET":
             context["videos"] = Video.objects.filter(uploaded_by=request.user)
+            # SELECT * FROM Video WHERE uploaded_by = request.user
             return render(request, 'uploaded_videos.html', context)
     else:
         messages.error(request, 'Please sign in to continue')

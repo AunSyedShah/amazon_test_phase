@@ -54,10 +54,11 @@ class VideoModelForm(forms.ModelForm):
 class EmailModelForm(forms.ModelForm):
     class Meta:
         model = Email
-        fields = ('name', 'user_email', 'subject', 'message')
+        fields = ('name', 'user_email', 'subject', 'message', 'aqdas')
         labels = {
             'name': 'Name',
             'user_email': 'Email',
             'subject': 'Subject',
             'message': 'Message',
+            'aqdas': 'Aqdas',
         }

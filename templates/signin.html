@@ -20,10 +20,14 @@
             </div>
         {% endif %}
     {% endfor %}
-    <h3>Login</h3>
-    <form method="post">
-        {% csrf_token %}
-        {{ sign_in_form|crispy }}
-        <button type="submit" class="btn btn-warning">Login</button>
-    </form>
+    <!-- w-50 with contents in center -->
+    <div class="d-flex justify-content-center shadow-lg p-3 mb-5 bg-body-tertiary rounded">
+        <form method="post">
+            {% csrf_token %}
+            {{ sign_in_form|crispy }}
+            <button type="submit" class="btn btn-warning">Login</button>
+            <!-- bootstrap anchor tag with button role -->
+            <a class="btn btn-link" href="{% url 'register' %}" target="_blank" role="button">SignUp Here!</a>
+        </form>
+    </div>
 {% endblock %}
