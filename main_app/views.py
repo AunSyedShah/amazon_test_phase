@@ -129,3 +129,7 @@ def uploaded_videos(request):
     else:
         messages.error(request, 'Please sign in to continue')
         return redirect('signin')
+
+
+def hina(request):
+    return render(request, 'hina.html')
