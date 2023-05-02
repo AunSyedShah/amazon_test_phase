@@ -18,6 +18,7 @@ python manage.py makemigrations main_app
 python manage.py migrate
 python manage.py runserver
 ```
+### for semrun and aqdas
 
 ##### How to create superuser
 ```commandline
