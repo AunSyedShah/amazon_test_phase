@@ -128,3 +128,9 @@ def uploaded_videos(request):
     else:
         messages.error(request, 'Please sign in to continue')
         return redirect('signin')
+
+
+def delete_image(request, image_id):
+    print(image_id)
+    Image.objects.get(pk=image_id).delete()
+    return redirect(request.path)

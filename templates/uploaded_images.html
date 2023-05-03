@@ -20,12 +20,13 @@
             </div>
         {% endif %}
     {% endfor %}
-    <h5>Uploaded Imaged</h5>
+    <h5>Uploaded Images</h5>
     <!-- display image in row and column -->
     <div class="row">
         {% for image in images %}
             <div class="col">
                 <img src="{{ image.image.url }}" class="img-thumbnail" height="50%" width="50%" alt="{{ image.id }}">
+                <p><b>Uploaded Date:</b> {{ image.uploaded_date }}</p>
             </div>
         {% endfor %}
     </div>
