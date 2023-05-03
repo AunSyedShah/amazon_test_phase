@@ -21,9 +21,11 @@
         {% endif %}
     {% endfor %}
     <h3>Login</h3>
-    <form method="post">
-        {% csrf_token %}
-        {{ sign_in_form|crispy }}
-        <button type="submit" class="btn btn-warning">Login</button>
-    </form>
+    <div class="w-50">
+        <form method="post">
+            {% csrf_token %}
+            {{ sign_in_form|crispy }}
+            <button type="submit" class="btn btn-warning">Login</button>
+        </form>
+    </div>
 {% endblock %}

@@ -10,7 +10,7 @@ class AuthenticationModelForm(AuthenticationForm):
         fields = "__all__"
         labels = {
             'username': 'Username',
-            'password': 'Password',
+            'password': 'PWD',
         }
 
 
@@ -54,7 +54,7 @@ class VideoModelForm(forms.ModelForm):
 class EmailModelForm(forms.ModelForm):
     class Meta:
         model = Email
-        fields = ('name', 'user_email', 'subject', 'message')
+        fields = ('name', 'user_email', 'subject', 'message', 'hobby')
         labels = {
             'name': 'Name',
             'user_email': 'Email',
