@@ -25,4 +25,3 @@ class Email(models.Model):
     sent_by = models.ForeignKey(User, on_delete=models.CASCADE, default=None, blank=True, null=True,
                                 related_name='sent_by')
     sent_date = models.DateTimeField(auto_now_add=True, blank=True, null=True)
-    hobby = models.CharField(max_length=10, default=None, blank=False, null=False)
