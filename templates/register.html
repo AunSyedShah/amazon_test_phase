@@ -20,12 +20,14 @@
             </div>
         {% endif %}
     {% endfor %}
-    <form method="post">
-        {% csrf_token %}
-        {{ registration_form|crispy }}
-        <button type="submit" class="btn btn-primary">Create Account</button>
-        <div class="d-flex justify-content-center">
-            <a role="button" class="btn btn-info mx-1" href="{% url 'signin' %}">SignIn</a>
-        </div>
-    </form>
+    <div class="d-flex justify-content-center">
+        <form method="post">
+            {% csrf_token %}
+            {{ registration_form|crispy }}
+            <button type="submit" class="btn btn-primary">Create Account</button>
+            <div class="d-flex justify-content-center">
+                <a role="button" class="btn btn-info mx-1" href="{% url 'signin' %}">SignIn</a>
+            </div>
+        </form>
+    </div>
 {% endblock %}
